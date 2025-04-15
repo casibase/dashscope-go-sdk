@@ -3,7 +3,6 @@ package httpclient
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 	"time"
 
@@ -25,7 +24,7 @@ type IWsClient interface {
 	ConnClient(req interface{}) error
 	CloseClient() error
 	SendBinaryDates(data []byte)
-	ResultChans(wsmsg <-chan WsMessage, err <-chan error)
+	ResultChans() (<-chan WsMessage, <-chan error)
 }
 
 // StartClient starts the client operation.
@@ -47,7 +46,7 @@ func (c *WsClient) ConnClient(req interface{}) error {
 
 	err, ok := <-c.errChan
 	if ok && err != nil {
-		log.Println("error: ", err)
+		return err
 	}
 	return nil
 }
@@ -56,8 +55,7 @@ func (c *WsClient) CloseClient() error {
 	close(c.inputChan)
 	close(c.outputChan)
 	close(c.errChan)
-	c.Conn.Close()
-	return nil
+	return c.Conn.Close()
 }
 
 func (c *WsClient) SendBinaryDates(data []byte) {
@@ -113,14 +111,13 @@ func (c *WsClient) readPump() {
 
 	c.Conn.SetReadLimit(maxMessageSize)
 	if err := c.Conn.SetReadDeadline(pongDelay); err != nil {
-		log.Printf("error: %v", err)
+		c.errChan <- err
 	}
 	c.Conn.SetPongHandler(pongFn)
 	for {
 		_, message, err := c.Conn.ReadMessage()
 		if err != nil {
 			if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
-				log.Printf("error: %v", err)
 				c.errChan <- err
 			}
 			break
@@ -130,13 +127,10 @@ func (c *WsClient) readPump() {
 			Type: websocket.TextMessage,
 			Data: message,
 		}
-		// Process the message (this part needs to be implemented based on your application logic).
 	}
 }
 
 // writePump pumps messages from the write channel to the websocket connection.
-//
-//nolint:cyclop
 func (c *WsClient) writePump() {
 	ticker := time.NewTicker(pingPeriod)
 	defer func() {
@@ -151,17 +145,16 @@ func (c *WsClient) writePump() {
 				c.errChan <- fmt.Errorf("write channel is closed")
 				err := c.Conn.WriteMessage(websocket.CloseMessage, []byte{})
 				if err != nil {
-					log.Printf("error: %v", err)
+					c.errChan <- err
 				}
 				return
 			}
 			err := c.Conn.SetWriteDeadline(time.Now().Add(writeWait))
 			if err != nil {
-				log.Printf("error: %v", err)
+				c.errChan <- err
 			}
 
 			if err := c.Conn.WriteMessage(message.Type, message.Data); err != nil {
-				log.Println("err in write message: ", err)
 				c.errChan <- err
 				return
 			}
