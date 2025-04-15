@@ -3,14 +3,14 @@ package main
 import (
 	"bufio"
 	"context"
+	dashscopego "github.com/casibase/dashscope-go-sdk"
 	"log"
 	"os"
 	"os/user"
 	"path/filepath"
 	"time"
 
-	"github.com/dark-Qy/dashscope-go-sdk"
-	"github.com/dark-Qy/dashscope-go-sdk/paraformer"
+	"github.com/casibase/dashscope-go-sdk/paraformer"
 )
 
 func main() {

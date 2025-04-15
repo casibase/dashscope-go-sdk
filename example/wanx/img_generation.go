@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"context"
+	dashscopego "github.com/casibase/dashscope-go-sdk"
 	"image"
 	"image/png"
 	"log"
@@ -10,8 +11,7 @@ import (
 	"os/user"
 	"path/filepath"
 
-	"github.com/dark-Qy/dashscope-go-sdk"
-	"github.com/dark-Qy/dashscope-go-sdk/wanx"
+	"github.com/casibase/dashscope-go-sdk/wanx"
 )
 
 func main() {

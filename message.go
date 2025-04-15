@@ -1,7 +1,7 @@
 package dashscopego
 
 import (
-	"github.com/dark-Qy/dashscope-go-sdk/qwen"
+	"github.com/casibase/dashscope-go-sdk/qwen"
 )
 
 type (

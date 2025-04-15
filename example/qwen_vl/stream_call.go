@@ -2,11 +2,11 @@ package main
 
 import (
 	"context"
+	dashscopego "github.com/casibase/dashscope-go-sdk"
 	"log"
 	"os"
 
-	"github.com/dark-Qy/dashscope-go-sdk"
-	"github.com/dark-Qy/dashscope-go-sdk/qwen"
+	"github.com/casibase/dashscope-go-sdk/qwen"
 )
 
 func main() {
