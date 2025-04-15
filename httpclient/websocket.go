@@ -126,7 +126,6 @@ func (c *WsClient) readPump() {
 			break
 		}
 
-		log.Println("message: ", string(message))
 		c.outputChan <- WsMessage{
 			Type: websocket.TextMessage,
 			Data: message,
@@ -159,11 +158,6 @@ func (c *WsClient) writePump() {
 			err := c.Conn.SetWriteDeadline(time.Now().Add(writeWait))
 			if err != nil {
 				log.Printf("error: %v", err)
-			}
-
-			// TODO: 临时输出
-			if message.Type == websocket.TextMessage {
-				log.Printf("ws TextMessage: %v\n", string(message.Data))
 			}
 
 			if err := c.Conn.WriteMessage(message.Type, message.Data); err != nil {
