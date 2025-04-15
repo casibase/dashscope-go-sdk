@@ -10,8 +10,8 @@ import (
 	"os/user"
 	"path/filepath"
 
-	"github.com/eswulei/dashscope-go"
-	"github.com/eswulei/dashscope-go/wanx"
+	"github.com/dark-Qy/dashscope-go-sdk"
+	"github.com/dark-Qy/dashscope-go-sdk/wanx"
 )
 
 func main() {

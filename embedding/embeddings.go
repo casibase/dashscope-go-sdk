@@ -3,11 +3,11 @@ package embedding
 import (
 	"context"
 
-	"github.com/eswulei/dashscope-go/httpclient"
+	"github.com/dark-Qy/dashscope-go-sdk/httpclient"
 )
 
 const (
-	embeddingURL          = "https://dashscope.aliyuncs.com/api/v1/services/embeddings/text-embedding/text-embedding"
+	embeddingURL = "https://dashscope.aliyuncs.com/api/v1/services/embeddings/text-embedding/text-embedding"
 	//defaultEmbeddingModel = "text-embedding-v1"
 	defaultEmbeddingModel = "text-embedding-v2"
 )

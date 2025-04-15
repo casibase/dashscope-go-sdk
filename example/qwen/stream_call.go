@@ -2,12 +2,12 @@ package main
 
 import (
 	"context"
-	"github.com/eswulei/dashscope-go/embedding"
+	"github.com/dark-Qy/dashscope-go-sdk/embedding"
 	"log"
 	//"os"
 
-	"github.com/eswulei/dashscope-go"
-	"github.com/eswulei/dashscope-go/qwen"
+	"github.com/dark-Qy/dashscope-go-sdk"
+	"github.com/dark-Qy/dashscope-go-sdk/qwen"
 )
 
 func main() {

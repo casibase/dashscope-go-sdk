@@ -6,9 +6,9 @@ import (
 	"strings"
 	"testing"
 
-	httpclient "github.com/eswulei/dashscope-go/httpclient"
-	qwen "github.com/eswulei/dashscope-go/qwen"
-	wanx "github.com/eswulei/dashscope-go/wanx"
+	httpclient "github.com/dark-Qy/dashscope-go-sdk/httpclient"
+	qwen "github.com/dark-Qy/dashscope-go-sdk/qwen"
+	wanx "github.com/dark-Qy/dashscope-go-sdk/wanx"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/mock/gomock"

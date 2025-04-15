@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"strings"
 
-	httpclient "github.com/eswulei/dashscope-go/httpclient"
+	httpclient "github.com/dark-Qy/dashscope-go-sdk/httpclient"
 )
 
 //nolint:lll

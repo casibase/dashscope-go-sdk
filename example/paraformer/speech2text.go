@@ -9,8 +9,8 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/eswulei/dashscope-go"
-	"github.com/eswulei/dashscope-go/paraformer"
+	"github.com/dark-Qy/dashscope-go-sdk"
+	"github.com/dark-Qy/dashscope-go-sdk/paraformer"
 )
 
 func main() {
