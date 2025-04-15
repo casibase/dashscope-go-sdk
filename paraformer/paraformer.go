@@ -2,11 +2,11 @@ package paraformer
 
 import (
 	"context"
-	"log"
+	"fmt"
 	"net/http"
 	"strings"
 
-	httpclient "github.com/eswulei/dashscope-go/httpclient"
+	httpclient "github.com/casibase/dashscope-go-sdk/httpclient"
 	"github.com/google/uuid"
 )
 
@@ -24,10 +24,8 @@ func ConnRecognitionClient(request *Request, token string) (*httpclient.WsClient
 	return client, nil
 }
 
-func CloseRecognitionClient(cli *httpclient.WsClient) {
-	if err := cli.CloseClient(); err != nil {
-		log.Printf("close client error: %v", err)
-	}
+func CloseRecognitionClient(cli *httpclient.WsClient) error {
+	return cli.CloseClient()
 }
 
 func SendRadioData(cli *httpclient.WsClient, bytesData []byte) {
@@ -38,37 +36,29 @@ type ResultWriter interface {
 	WriteResult(str string) error
 }
 
-func HandleRecognitionResult(ctx context.Context, cli *httpclient.WsClient, fn StreamingFunc) {
+func HandleRecognitionResult(ctx context.Context, cli *httpclient.WsClient, fn StreamingFunc) error {
 	outputChan, errChan := cli.ResultChans()
 
-	// TODO: handle errors.
-BREAK_FOR:
 	for {
 		select {
 		case output, ok := <-outputChan:
 			if !ok {
-				log.Println("outputChan is closed")
-				break BREAK_FOR
+				return fmt.Errorf("outputChan is closed")
 			}
 
 			// streaming callback func
 			if err := fn(ctx, output.Data); err != nil {
-				log.Println("error: ", err)
-				break BREAK_FOR
+				return err
 			}
 
 		case err := <-errChan:
 			if err != nil {
-				log.Println("error: ", err)
-				break BREAK_FOR
+				return err
 			}
 		case <-ctx.Done():
-			log.Println("Done")
-			break BREAK_FOR
+			return ctx.Err()
 		}
 	}
-
-	log.Println("get recognition result...over")
 }
 
 // task_id length 32.

@@ -5,8 +5,9 @@ import (
 	"log"
 	"os"
 
-	"github.com/eswulei/dashscope-go"
-	"github.com/eswulei/dashscope-go/qwen"
+	dashscopego "github.com/casibase/dashscope-go-sdk"
+
+	"github.com/casibase/dashscope-go-sdk/qwen"
 )
 
 func main() {

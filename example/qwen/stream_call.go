@@ -2,17 +2,19 @@ package main
 
 import (
 	"context"
-	"github.com/eswulei/dashscope-go/embedding"
 	"log"
+
+	dashscopego "github.com/casibase/dashscope-go-sdk"
+	"github.com/casibase/dashscope-go-sdk/embedding"
+
 	//"os"
 
-	"github.com/eswulei/dashscope-go"
-	"github.com/eswulei/dashscope-go/qwen"
+	"github.com/casibase/dashscope-go-sdk/qwen"
 )
 
 func main() {
 	model := qwen.QwenTurbo
-	//token := os.Getenv("DASHSCOPE_API_KEY")
+	// token := os.Getenv("DASHSCOPE_API_KEY")
 	token := "sk-f038f63cb4e3446fb61ba2e9e93a06a8"
 
 	if token == "" {
@@ -21,7 +23,7 @@ func main() {
 
 	cli := dashscopego.NewTongyiClient(model, token)
 
-	//content := qwen.TextContent{Text: "tell me a joke"}
+	// content := qwen.TextContent{Text: "tell me a joke"}
 
 	//input := dashscopego.TextInput{
 	//	Messages: []dashscopego.TextMessage{
@@ -47,13 +49,13 @@ func main() {
 	}
 
 	ctx := context.TODO()
-	//resp, err := cli.CreateCompletion(ctx, req)
+	// resp, err := cli.CreateCompletion(ctx, req)
 	resp, err := cli.CreateEmbedding(ctx, req)
 	if err != nil {
 		panic(err)
 	}
 
-	//log.Println("\nnon-stream result: ")
-	//log.Println(resp.Output.Choices[0].Message.Content.ToString())
+	// log.Println("\nnon-stream result: ")
+	// log.Println(resp.Output.Choices[0].Message.Content.ToString())
 	log.Println(resp)
 }

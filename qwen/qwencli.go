@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"strings"
 
-	httpclient "github.com/eswulei/dashscope-go/httpclient"
+	httpclient "github.com/casibase/dashscope-go-sdk/httpclient"
 )
 
 //nolint:lll
@@ -133,7 +133,6 @@ func _combineStreamingChunk[T IQwenContent](
 	tokenOpt := httpclient.WithTokenHeaderOption(token)
 
 	_rawStreamOutChannel, err = cli.PostSSE(ctx, url, payload, headerOpt, tokenOpt)
-
 	if err != nil {
 		_respChunkChannel <- StreamOutput[T]{Err: err}
 		return

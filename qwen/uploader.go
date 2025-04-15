@@ -11,7 +11,7 @@ import (
 	"path/filepath"
 	"time"
 
-	httpclient "github.com/eswulei/dashscope-go/httpclient"
+	httpclient "github.com/casibase/dashscope-go-sdk/httpclient"
 	"github.com/gabriel-vasile/mimetype"
 )
 

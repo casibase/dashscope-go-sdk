@@ -9,8 +9,9 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/eswulei/dashscope-go"
-	"github.com/eswulei/dashscope-go/paraformer"
+	dashscopego "github.com/casibase/dashscope-go-sdk"
+
+	"github.com/casibase/dashscope-go-sdk/paraformer"
 )
 
 func main() {
@@ -74,7 +75,7 @@ func readAudioFromDesktop() *bufio.Reader {
 
 	voiceFilePath := filepath.Join(usr.HomeDir, "Desktop", "hello_world_female2.wav")
 
-	voice, err := os.OpenFile(voiceFilePath, os.O_RDONLY, 0640) //nolint:gofumpt
+	voice, err := os.OpenFile(voiceFilePath, os.O_RDONLY, 0o640) //nolint:gofumpt
 	if err != nil {
 		panic(err)
 	}
