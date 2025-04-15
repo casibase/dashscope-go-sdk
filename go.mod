@@ -1,4 +1,4 @@
-module github.com/eswulei/dashscope-go
+module github.com/dark-Qy/dashscope-go-sdk
 
 go 1.21.0
 
