@@ -3,13 +3,14 @@ package main
 import (
 	"bytes"
 	"context"
-	dashscopego "github.com/casibase/dashscope-go-sdk"
 	"image"
 	"image/png"
 	"log"
 	"os"
 	"os/user"
 	"path/filepath"
+
+	dashscopego "github.com/casibase/dashscope-go-sdk"
 
 	"github.com/casibase/dashscope-go-sdk/wanx"
 )

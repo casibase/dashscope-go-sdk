@@ -2,9 +2,10 @@ package main
 
 import (
 	"context"
-	dashscopego "github.com/casibase/dashscope-go-sdk"
 	"log"
 	"os"
+
+	dashscopego "github.com/casibase/dashscope-go-sdk"
 
 	"github.com/casibase/dashscope-go-sdk/qwen"
 )

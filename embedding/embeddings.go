@@ -8,7 +8,7 @@ import (
 
 const (
 	embeddingURL = "https://dashscope.aliyuncs.com/api/v1/services/embeddings/text-embedding/text-embedding"
-	//defaultEmbeddingModel = "text-embedding-v1"
+	// defaultEmbeddingModel = "text-embedding-v1"
 	defaultEmbeddingModel = "text-embedding-v2"
 )
 
